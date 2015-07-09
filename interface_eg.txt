@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace ConsoleApplicaion1
+{
+    interface calculate
+    {
+        float CircleArea(int r);
+        float CubeVolume(int e);
+    }
+
+    public class Geometry : calculate
+    {
+        public float CircleArea(int r)
+        {
+            return (22 / 7) * r * r;
+        }
+
+        public float CubeVolume(int e)
+        {
+            return e * e * e;
+        }
+    }
+
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            Geometry g = new Geometry();
+            Console.WriteLine("Enter your choice:\n1.To Calculate Area of Circle\n2.To Claculate Volume of Cube");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    int radius;
+                    Console.WriteLine("Enter the Radius for a circle:");
+                    radius = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Area of the circle is:{0}", g.CircleArea(radius));
+                    break;
+
+                case 2:
+                    int edge;
+                    Console.WriteLine("Enter Edge value for cube:");
+                    edge = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Volume of the cube is:{0}", g.CubeVolume(edge));
+                    break;
+            }
+            Console.ReadKey();
+        }
+    }
+}

@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Enter the number of Players:");
+            int number = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(number);
+            Player game1 = new Player();
+            game1.AcceptDetail(number);
+           game1.CompareDetail(number);
+            game1.PrintDetail(number);
+        }
+
+    }
+    class Player
+    {
+        string[] playername= new string[5];
+        int[] score= new int[5];
+        
+        public void AcceptDetail(int num)
+        {
+            
+            
+            Console.WriteLine(num);
+            for (int i = 0; i < num; i++)
+            {
+                Console.WriteLine("Enter PlayerName:");
+                playername[i] =Console.ReadLine();
+                Console.WriteLine("Enter Score:");
+                score[i] =Convert.ToInt32(Console.ReadLine());
+                
+            }
+            
+
+        }
+        public void CompareDetail(int num)
+        {
+            for (int i = 0; i <=num; i++)
+            {
+                if (score[i] < score[i + 1])
+                {
+                    int temp = score[i];
+                    string temp1 = playername[i];
+                    score[i] = score[i + 1];
+                    playername[i] = playername[i + 1];
+                    score[i + 1] = temp;
+                    playername[i + 1] = temp1;
+                }
+                Console.WriteLine(score[i]);
+            }
+        }
+        public void PrintDetail(int num)
+        {
+            int rank = 1;
+            Console.WriteLine("Rank Details");
+            for (int i = 0; i < num; i++)
+            {
+                Console.WriteLine(" Player Name:{0}", playername[i]);
+                Console.WriteLine("Score:{0}", score[i]);
+                Console.WriteLine("Rank Obtained:{0}", rank);
+                rank++;
+            }
+            Console.ReadKey();
+
+        }
+    }
+}

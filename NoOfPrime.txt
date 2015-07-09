@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] arr = new int[10];
+            Console.WriteLine("Enter the values for array:");
+            for (int i = 0; i < 10; i++)
+            {
+                arr[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.WriteLine("Hai");
+            Console.WriteLine("Number of prime Values in a given array is:");
+            Console.WriteLine(PrimeNum(arr));
+            Console.ReadLine();
+        }
+        public static int PrimeNum(int[] a)
+        {
+            int count = 0;
+            for (int i = 0; i < 10; i++)
+            {
+
+                if (a[i] % 2 == 0)
+                    count++;
+
+            }
+            return count;
+
+        }
+    }
+}
+    
