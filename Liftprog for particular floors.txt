@@ -1,0 +1,129 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace LiftProgram
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int index=0,flag = 0,floorselected;
+            int floorcount, liftcount,currentpos=0,userpos=0;
+            Console.WriteLine("Enter the Number of Floors:");
+            floorcount = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the Number of Lift:");
+            liftcount = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the Lift Available:");
+            string[] liftname = new string[liftcount];
+            int[][] liftaccess = new int[liftcount][];
+            for (int i = 0; i < liftcount; i++)
+            {
+                liftname[i] = Console.ReadLine();
+            }
+            int[] col = new int[liftcount];
+            int invalue = 0;
+            foreach (string s in liftname)
+            {
+                Console.WriteLine("Enter the number of floors has {0} lift access:",s);
+                for (; invalue < liftcount;)
+                {
+                    int c = Convert.ToInt32(Console.ReadLine());
+                    liftaccess[invalue] = new int[c];
+                    col[invalue] = c;
+                    invalue++;
+                    break;
+                 }
+            }
+            int innum = 0;
+            foreach (string s in liftname)
+            {
+                Console.WriteLine("Enter the floor number has {0} lift accessibility:", s);
+                for (; innum < liftcount; )
+                {
+                    for (int j = 0; j < col[innum]; j++)
+                    {
+                        liftaccess[innum][j] = Convert.ToInt32(Console.ReadLine());
+                    }
+                    innum++;
+                    break;
+                }
+            }
+            while (true)
+            {
+                Console.WriteLine("             Welcome");
+                Console.WriteLine("Choose the Lift that you want:");
+                for (int i = 0; i < liftcount; i++)
+                {
+                    Console.WriteLine(liftname[i]);
+                }
+                string liftselected = Console.ReadLine();
+                if (liftselected == "exit")
+                {
+                    currentpos=0;
+                    break;
+                }
+                for (int i = 0; i < liftcount; i++)
+                {
+                    if (liftname[i] == liftselected)
+                    {
+                        index = i;
+                    }
+                 }
+                Console.WriteLine("Enter the Floor you are:");
+                userpos = Convert.ToInt32(Console.ReadLine());
+                for (int i = index; i == index; i++)
+                {
+                    for (int j = 0; j < col[i]; j++)
+                    {
+                        if (liftaccess[i][j] == userpos || currentpos == userpos)
+                        {
+                            flag = 1;
+                        }
+                    }
+                }
+                if (flag == 1)
+                {
+                    Console.WriteLine("{0} lift available for the following floors", liftselected);
+                    for (int i = index; i == index; i++)
+                    {
+                        for (int j = 0; j < col[i]; j++)
+                        {
+                            Console.WriteLine(liftaccess[i][j]);
+                        }
+                    }
+                    if (currentpos == 0 || currentpos == userpos)
+                    {
+                        currentpos = userpos;
+                        Console.WriteLine("Which floor you want to go:");
+                        floorselected = Convert.ToInt32(Console.ReadLine());
+                        for (int i = index; i == index; i++)
+                        {
+                            for (int j = 0; j < col[i]; j++)
+                            {
+                                   if (floorselected == liftaccess[i][j])
+                                    {
+                                        currentpos = floorselected;
+                                        Console.WriteLine("Thank You..!!!");
+                                    }                                  
+                                    }
+                        }
+                        }
+                     else
+                    {
+                        Console.WriteLine("Lift is in {0} floor", currentpos);
+                        Console.WriteLine("Wait for few Minutes");
+                        currentpos = userpos;
+                    }
+                }
+                else
+                    {
+                    Console.WriteLine("{0} lift has no access for {1} floor", liftselected, userpos);
+                }
+            }
+        }
+    }
+    }
+
+
