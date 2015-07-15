@@ -19,18 +19,14 @@ namespace LiftProblem
             string[] liftname = new string[liftcount];
             int[][] liftaccess = new int[liftcount][];
             for (int i = 0; i < liftcount; i++)
-            {
                 liftname[i] = Console.ReadLine();
-            }
             while (true)
             {
                 Console.WriteLine("             Welcome");
                 Console.WriteLine("Lift Access is Available for All Floors...!!!");
                 Console.WriteLine("Choose the Lift that you want:");
                 for (int i = 0; i < liftcount; i++)
-                {
                     Console.WriteLine(liftname[i]);
-                }
                 string liftselected = Console.ReadLine();
                 if (liftselected == "exit")
                 {
@@ -40,37 +36,36 @@ namespace LiftProblem
                 for (int i = 0; i < liftcount; i++)
                 {
                     if (liftname[i] == liftselected)
-                    {
                         index = i;
-                    }
-                }
+                 }
                 Console.WriteLine("Enter the Floor you are:");
                 userpos = Convert.ToInt32(Console.ReadLine());
-                if (currentpos == 0 || currentpos ==userpos)
+                if (userpos <= floorcount)
                 {
-                    currentpos = userpos;
-                    Console.WriteLine("Which floor you want to go:");
-                    floorselected = Convert.ToInt32(Console.ReadLine());
-                    if (floorselected <= floorcount)
+                    if (currentpos == 0 || currentpos == userpos)
                     {
-                        currentpos = floorselected;
-                        Console.WriteLine("Thank You..!!!");
+                        currentpos = userpos;
+                        Console.WriteLine("Which floor you want to go:");
+                        floorselected = Convert.ToInt32(Console.ReadLine());
+                        if (floorselected <= floorcount)
+                        {
+                            currentpos = floorselected;
+                            Console.WriteLine("Thank You..!!!");
+                        }
+                        else
+                            Console.WriteLine("Only {0} floors are available..!!!\n Sorry ThankYou..!!!", floorcount);
                     }
                     else
-                        Console.WriteLine("Only {0} floors are available..!!!",floorcount);
+                    {
+                        Console.WriteLine("Lift is in {0} floor", currentpos);
+                        Console.WriteLine("Wait for few Minutes");
+                        currentpos = userpos;
+                    }
                 }
                 else
-                {
-
-                    Console.WriteLine("Lift is in {0} floor", currentpos);
-                    Console.WriteLine("Wait for few Minutes");
-                    currentpos = userpos;
-
-                }
-
-            }
-            
-          }
+                    Console.WriteLine("Only {0} floors are available..!!!\n Sorry ThankYou..!!!", floorcount);
+             }
+        }
     }
 }
 
